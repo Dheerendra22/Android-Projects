@@ -9,8 +9,8 @@
 
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
         android:layout_gravity="center"
         android:layout_marginTop="70dp"
         android:src="@drawable/logo"
@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome_to_vims"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10ssp"
         android:textStyle="bold"
-        android:textSize="18sp"
+        android:textSize="@dimen/_18ssp"
         android:id="@+id/txt1"
 
         />
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sign_in_to_continue"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/_15ssp"
         android:textStyle="italic"
         android:id="@+id/txt2"
         />
@@ -42,37 +42,37 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_40sdp"
         android:autofillHints=""
         android:drawableStart="@drawable/attach_email_24"
-        android:ems="15"
+        android:ems="16"
         android:hint="@string/your_email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
-        android:textColorHint="#546E7A" />
+        android:textColorHint="#455A64" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:autofillHints=""
         android:drawableStart="@drawable/password_svgrepo_com"
-        android:ems="15"
+        android:ems="16"
         android:hint="@string/prompt_password"
         android:inputType="textPassword"
-        android:textColorHint="#546E7A"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:textColorHint="#455A64" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/forgot_password"
         android:layout_gravity="right"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_30sdp"
         android:textStyle="normal"
         android:id="@+id/forgotPassword"
         tools:ignore="RtlHardcoded" />
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/loginbtn"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:ems="10"
         android:text="@string/login" />
 
@@ -94,7 +94,7 @@
         android:layout_height="wrap_content"
         android:text="@string/account_register"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20ssp"
         android:textStyle="bold"
         android:id="@+id/Register"
 

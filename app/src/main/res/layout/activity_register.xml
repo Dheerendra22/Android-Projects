@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,12 +9,15 @@
     android:background="#D4EDFA"
     tools:context=".Register_Activity">
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
         android:layout_gravity="center"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="@dimen/_30sdp"
         android:src="@drawable/logo"
         android:id="@+id/logo"
         android:contentDescription="@string/vims_image" />
@@ -24,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="@string/let_s_get_started"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10ssp"
         android:textStyle="bold"
         android:textSize="18sp"
         android:id="@+id/txt1"
@@ -35,30 +38,31 @@
         android:layout_height="wrap_content"
         android:text="@string/create_an_new_account"
         android:layout_gravity="center"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="@dimen/_15ssp"
         android:textStyle="italic"
         android:id="@+id/txt2"
         />
+
     <EditText
         android:id="@+id/fullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_25sdp"
         android:autofillHints=""
         android:drawableStart="@drawable/account_circle_24"
         android:ems="15"
         android:hint="@string/full_name"
-        android:inputType="text"
+        android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:textColorHint="#546E7A" />
+        android:textColorHint="#455A64" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:autofillHints=""
         android:drawableStart="@drawable/attach_email_24"
         android:ems="15"
@@ -71,8 +75,8 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:autofillHints=""
         android:drawableStart="@drawable/password_svgrepo_com"
         android:ems="15"
@@ -85,35 +89,36 @@
         android:id="@+id/ConPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:autofillHints=""
         android:drawableStart="@drawable/password_svgrepo_com"
         android:ems="15"
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:textColorHint="#546E7A" />
+        android:textColorHint="#455A64" />
+
     <EditText
         android:id="@+id/phoneNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:autofillHints=""
         android:drawableStart="@drawable/baseline_call_24"
         android:ems="15"
         android:hint="@string/phone"
         android:inputType="phone"
-        android:textColorHint="#546E7A"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:textColorHint="#455A64" />
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/loginbtn"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:ems="10"
         android:text="@string/register" />
     <TextView
@@ -121,9 +126,21 @@
         android:layout_height="wrap_content"
         android:text="@string/have_an_account_sign_in"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:id="@+id/gotoSign_in"
         />
 
-
 </LinearLayout>
+
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_centerInParent="true"
+        android:id="@+id/progressbar"
+        />
+
+
+
+</RelativeLayout>

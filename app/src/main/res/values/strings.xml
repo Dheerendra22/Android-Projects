@@ -11,7 +11,7 @@
     <string name="welcome_to_vims">Welcome to VIMS</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="your_email"> Your Email</string>
-    <string name="login">Login</string>
+    <string name="login">Sign in</string>
     <string name="vims_image">Vims_Image</string>
     <string name="account_register">Don\'t have an account ? Register</string>
     <string name="forgot_password">Forgot Password</string>
