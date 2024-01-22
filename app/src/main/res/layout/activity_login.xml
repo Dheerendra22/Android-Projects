@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#D4EDFA"
+    android:visibility="visible"
     tools:context=".Login_activity">
 
 
@@ -101,7 +102,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:id="@+id/progressbar"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        />
 
 
 </LinearLayout>

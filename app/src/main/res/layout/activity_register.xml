@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#D4EDFA"
+    android:visibility="visible"
     tools:context=".Register_Activity">
 
 <LinearLayout
@@ -38,7 +39,7 @@
         android:layout_height="wrap_content"
         android:text="@string/create_an_new_account"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_7ssp"
         android:textStyle="italic"
         android:id="@+id/txt2"
         />
@@ -48,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:autofillHints=""
         android:drawableStart="@drawable/account_circle_24"
         android:ems="16"
@@ -112,6 +113,33 @@
         android:inputType="phone"
         android:minHeight="48dp"
         android:textColorHint="#455A64" />
+
+    <EditText
+        android:id="@+id/department"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:autofillHints=""
+        android:drawableStart="@drawable/department"
+        android:ems="16"
+        android:hint="@string/department"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="#455A64" />
+    <EditText
+        android:id="@+id/year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:autofillHints=""
+        android:drawableStart="@drawable/department"
+        android:ems="16"
+        android:hint="@string/year"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="#455A64" />
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="wrap_content"
@@ -130,6 +158,7 @@
         android:id="@+id/gotoSign_in"
         />
 
+
 </LinearLayout>
 
 
@@ -138,6 +167,7 @@
         android:layout_height="wrap_content"
         android:visibility="invisible"
         android:layout_centerInParent="true"
+        android:indeterminate="true"
         android:id="@+id/progressbar"
         />
 

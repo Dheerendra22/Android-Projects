@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class Login_activity extends AppCompatActivity {
 EditText email , password ;
-TextView goToRegister ;
+TextView goToRegister ,forgot;
 Button login ;
 ProgressBar pgBar ;
 
@@ -46,6 +46,7 @@ FirebaseAuth fAuth ;
        password = findViewById(R.id.password);
        goToRegister = findViewById(R.id.Register);
        pgBar = findViewById(R.id.progressbar);
+       forgot = findViewById(R.id.forgotPassword);
        fAuth = FirebaseAuth.getInstance();
 
        // On Click listener in sign in Button

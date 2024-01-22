@@ -23,4 +23,6 @@
     <string name="register">Register</string>
     <string name="have_an_account_sign_in">Have an account? Click here to Sign in</string>
     <string name="logout">Logout</string>
+    <string name="department">Department</string>
+    <string name="year">Year</string>
 </resources>
