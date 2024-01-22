@@ -9,10 +9,10 @@
 
 
     <ImageView
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_100sdp"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
         android:layout_gravity="center"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:src="@drawable/logo"
         android:id="@+id/logo"
         android:contentDescription="@string/vims_image" />
@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome_to_vims"
         android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_10ssp"
+        android:layout_marginTop="@dimen/_5ssp"
         android:textStyle="bold"
-        android:textSize="@dimen/_18ssp"
+        android:textSize="@dimen/_12ssp"
         android:id="@+id/txt1" />
 
     <TextView
@@ -33,6 +33,7 @@
         android:text="@string/sign_in_to_continue"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_15ssp"
+        android:textSize="@dimen/_10ssp"
         android:textStyle="italic"
         android:id="@+id/txt2" />
 
@@ -41,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_50sdp"
         android:autofillHints=""
         android:drawableStart="@drawable/attach_email_24"
         android:ems="16"
@@ -65,14 +66,14 @@
         android:textColorHint="#455A64" />
 
     <TextView
+        android:id="@+id/forgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/forgot_password"
         android:layout_gravity="right"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:text="@string/forgot_password"
         android:textStyle="normal"
-        android:id="@+id/forgotPassword"
         tools:ignore="RtlHardcoded" />
 
     <Button

@@ -79,6 +79,7 @@ FirebaseAuth fAuth ;
                    finish();
                }else {
                    Toast.makeText(Login_activity.this, "Something Error!"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                   pgBar.setVisibility(View.GONE);
                }
            });
        });

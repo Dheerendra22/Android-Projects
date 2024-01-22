@@ -112,6 +112,7 @@ public class Register_Activity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         } else {
             Toast.makeText(Register_Activity.this, "Something Error!"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+            pg.setVisibility(View.GONE);
         }
      });
 
