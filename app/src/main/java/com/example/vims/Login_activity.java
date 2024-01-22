@@ -1,6 +1,7 @@
 package com.example.vims;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,8 +14,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
@@ -91,6 +97,46 @@ FirebaseAuth fAuth ;
        goToRegister.setOnClickListener(v -> {
            startActivity(new Intent(getApplicationContext(), Register_Activity.class));
            finish();
+       });
+
+       forgot.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               EditText resetMail = new EditText(v.getContext());
+               AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+               passwordResetDialog.setTitle("Reset Password");
+               passwordResetDialog.setMessage("Enter your Email to receive reset password link.");
+               passwordResetDialog.setView(resetMail);
+
+               passwordResetDialog.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       String email = resetMail.getText().toString();
+                       fAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                           @Override
+                           public void onComplete(@NonNull Task<Void> task) {
+                               Toast.makeText(Login_activity.this, "Link sent to your email!", Toast.LENGTH_SHORT).show();
+
+                           }
+                       }).addOnFailureListener(new OnFailureListener() {
+                           @Override
+                           public void onFailure(@NonNull Exception e) {
+                               Toast.makeText(Login_activity.this, "Reset link Not sent ! "+e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                           }
+                       });
+
+                   }
+               });
+               passwordResetDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+
+                   }
+               });
+               passwordResetDialog.create().show();
+           }
+
        });
 
     }
