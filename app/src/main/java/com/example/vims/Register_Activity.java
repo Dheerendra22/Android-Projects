@@ -25,7 +25,6 @@ public class Register_Activity extends AppCompatActivity {
     Button register ;
     TextView goToSign ;
     ProgressBar pg ;
-
    FirebaseAuth fAuth ;
 
 
@@ -34,6 +33,7 @@ public class Register_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // For Full screen
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -43,7 +43,7 @@ public class Register_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-       //  find Id
+       //  find Ids
 
         fullName = findViewById(R.id.fullName);
         email = findViewById(R.id.email);
@@ -55,16 +55,18 @@ public class Register_Activity extends AppCompatActivity {
         pg = findViewById(R.id.progressbar);
 
 
-       //  Get instance
+        //  Get instance
 
         fAuth = FirebaseAuth.getInstance();
 
-        //Check If allready Login or not ?
+        //Check If already Login or not ?
+
         if(fAuth.getCurrentUser()!=null){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
 
+        //set Onclick listener on Register Button.
 
         register.setOnClickListener(v -> {
 
@@ -103,6 +105,7 @@ public class Register_Activity extends AppCompatActivity {
     pg.setVisibility(View.VISIBLE);
 
     // Create User in Firebase !
+
     fAuth.createUserWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(task -> {
         if(task.isSuccessful()){
             Toast.makeText(Register_Activity.this, "User Created Successfully.", Toast.LENGTH_SHORT).show();
@@ -110,9 +113,10 @@ public class Register_Activity extends AppCompatActivity {
         } else {
             Toast.makeText(Register_Activity.this, "Something Error!"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
         }
-    });
+     });
 
-});
+  });
+        // set click listener on sign in textview.
 
         goToSign.setOnClickListener(v -> {
             startActivity(new Intent(getApplicationContext(), Login_activity.class));
@@ -120,12 +124,6 @@ public class Register_Activity extends AppCompatActivity {
         });
 
 
-
-
     }
 
-
-
-
-
-    }
+}

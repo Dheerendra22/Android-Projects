@@ -25,9 +25,8 @@
         android:layout_marginTop="@dimen/_10ssp"
         android:textStyle="bold"
         android:textSize="@dimen/_18ssp"
-        android:id="@+id/txt1"
+        android:id="@+id/txt1" />
 
-        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,8 +34,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_15ssp"
         android:textStyle="italic"
-        android:id="@+id/txt2"
-        />
+        android:id="@+id/txt2" />
 
     <EditText
         android:id="@+id/email"
@@ -77,8 +75,6 @@
         android:id="@+id/forgotPassword"
         tools:ignore="RtlHardcoded" />
 
-
-
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
@@ -96,17 +92,15 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_20ssp"
         android:textStyle="bold"
-        android:id="@+id/Register"
+        android:id="@+id/Register" />
 
-        />
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:id="@+id/progressbar"
-        android:visibility="invisible"
-        />
+        android:visibility="invisible" />
 
 
 </LinearLayout>

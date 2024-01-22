@@ -26,23 +26,29 @@ Button login ;
 ProgressBar pgBar ;
 
 FirebaseAuth fAuth ;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // For Full screen
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
+        // Find Ids of Components
+
        login = findViewById(R.id.btnLogin);
        email = findViewById(R.id.email);
        password = findViewById(R.id.password);
        goToRegister = findViewById(R.id.Register);
        pgBar = findViewById(R.id.progressbar);
-
        fAuth = FirebaseAuth.getInstance();
+
+       // On Click listener in sign in Button
 
        login.setOnClickListener(v -> {
 
@@ -65,6 +71,7 @@ FirebaseAuth fAuth ;
           pgBar.setVisibility(View.VISIBLE);
 
            // Authenticate the user !
+
            fAuth.signInWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(task -> {
                if(task.isSuccessful()){
                    Toast.makeText(Login_activity.this, "Logged in Successfully. ", Toast.LENGTH_SHORT).show();
@@ -75,6 +82,8 @@ FirebaseAuth fAuth ;
                }
            });
        });
+
+       // set click listener on Register TextView.
 
        goToRegister.setOnClickListener(v -> {
            startActivity(new Intent(getApplicationContext(), Register_Activity.class));
