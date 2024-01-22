@@ -25,4 +25,5 @@
     <string name="logout">Logout</string>
     <string name="department">Department</string>
     <string name="year">Year</string>
+    <string name="vims">VIMS</string>
 </resources>

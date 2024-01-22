@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#D4EDFA"
+    android:background="@drawable/background"
     android:visibility="visible"
     tools:context=".Login_activity">
 
@@ -13,7 +13,7 @@
         android:layout_width="@dimen/_70sdp"
         android:layout_height="@dimen/_70sdp"
         android:layout_gravity="center"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="@dimen/_100sdp"
         android:src="@drawable/logo"
         android:id="@+id/logo"
         android:contentDescription="@string/vims_image" />
