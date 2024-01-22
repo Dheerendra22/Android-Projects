@@ -2,18 +2,23 @@ package com.example.vims;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class Register_Activity extends AppCompatActivity {
     EditText fullName,email,password,con_password,phone ;
@@ -21,7 +26,7 @@ public class Register_Activity extends AppCompatActivity {
     TextView goToSign ;
     ProgressBar pg ;
 
-   FirebaseAuth faut ;
+   FirebaseAuth fAuth ;
 
 
     @SuppressLint("MissingInflatedId")
@@ -52,19 +57,22 @@ public class Register_Activity extends AppCompatActivity {
 
        //  Get instance
 
-        faut = FirebaseAuth.getInstance();
+        fAuth = FirebaseAuth.getInstance();
+
+        //Check If allready Login or not ?
+        if(fAuth.getCurrentUser()!=null){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
 
 
+        register.setOnClickListener(v -> {
 
-
-
-register.setOnClickListener(v -> {
-
-    String name = fullName.getText().toString() ;
-    String mEmail = email.getText().toString().trim();
-    String mPassword = password.getText().toString().trim();
-    String conPassword = con_password.getText().toString().trim();
-    String mPhone = phone.getText().toString().trim();
+             String name = fullName.getText().toString() ;
+             String mEmail = email.getText().toString().trim();
+             String mPassword = password.getText().toString().trim();
+             String conPassword = con_password.getText().toString().trim();
+             String mPhone = phone.getText().toString().trim();
 
 
     if(TextUtils.isEmpty(name)){
@@ -85,14 +93,31 @@ register.setOnClickListener(v -> {
     }
     if (!mPassword.equals(conPassword)) {
         con_password.setError("Enter password Correctly!");
-
+        return;
     }
     if (mPhone.length() < 10) {
         phone.setError("Enter correct phone number!");
+        return;
     }
 
+    pg.setVisibility(View.VISIBLE);
+
+    // Create User in Firebase !
+    fAuth.createUserWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(task -> {
+        if(task.isSuccessful()){
+            Toast.makeText(Register_Activity.this, "User Created Successfully.", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        } else {
+            Toast.makeText(Register_Activity.this, "Something Error!"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    });
 
 });
+
+        goToSign.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Login_activity.class));
+            finish();
+        });
 
 
 
