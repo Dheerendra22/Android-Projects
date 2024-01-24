@@ -47,13 +47,14 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_50sdp"
         android:autofillHints=""
+        android:background="@drawable/edit_text"
         android:drawableStart="@drawable/attach_email_24"
         android:ems="16"
         android:hint="@string/your_email"
         android:inputType="textEmailAddress"
-        android:background="@drawable/edit_text"
         android:minHeight="48dp"
-        android:textColorHint="#455A64" />
+        android:textColorHint="#616161"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/password"
