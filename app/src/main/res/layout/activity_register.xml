@@ -10,174 +10,177 @@
     android:visibility="visible"
     tools:context=".Register_Activity">
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="@dimen/_70sdp"
-            android:layout_height="@dimen/_70sdp"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:src="@drawable/logo"
-            android:id="@+id/logo"
-            android:contentDescription="@string/vims_image" />
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/let_s_get_started"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_10ssp"
-            android:fontFamily="@font/aldrich"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:id="@+id/txt1"
+            android:orientation="vertical">
 
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/create_an_new_account"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_7ssp"
-            android:fontFamily="@font/abeezee_italic"
-            android:textStyle="italic"
-            android:id="@+id/txt2"
-            />
+            <ImageView
+                android:id="@+id/logo"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:contentDescription="@string/vims_image"
+                android:src="@drawable/logo" />
 
-        <EditText
-            android:id="@+id/fullName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:autofillHints=""
-            android:drawableStart="@drawable/account_circle_24"
-            android:ems="16"
-            android:hint="@string/full_name"
-            android:background="@drawable/edit_text"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:textColorHint="#455A64" />
+            <TextView
+                android:id="@+id/txt1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10ssp"
+                android:fontFamily="@font/aldrich"
+                android:text="@string/let_s_get_started"
+                android:textSize="18sp"
+                android:textStyle="bold"
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:autofillHints=""
-            android:drawableStart="@drawable/attach_email_24"
-            android:ems="16"
-            android:background="@drawable/edit_text"
-            android:hint="@string/your_email"
-            android:inputType="textEmailAddress"
-            android:minHeight="48dp"
-            android:textColorHint="#546E7A" />
+                />
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:autofillHints=""
-            android:drawableStart="@drawable/password_svgrepo_com"
-            android:ems="16"
-            android:hint="@string/prompt_password"
-            android:inputType="textPassword"
-            android:textColorHint="#546E7A"
-            android:minHeight="48dp" />
+            <TextView
+                android:id="@+id/txt2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_7ssp"
+                android:fontFamily="@font/abeezee_italic"
+                android:text="@string/create_an_new_account"
+                android:textStyle="italic" />
 
-        <EditText
-            android:id="@+id/ConPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:background="@drawable/edit_text"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:autofillHints=""
-            android:drawableStart="@drawable/password_svgrepo_com"
-            android:ems="16"
-            android:hint="@string/confirm_password"
-            android:inputType="textPassword"
-            android:minHeight="48dp"
-            android:textColorHint="#455A64" />
+            <EditText
+                android:id="@+id/fullName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text"
+                android:drawableStart="@drawable/account_circle_24"
+                android:ems="16"
+                android:hint="@string/full_name"
+                android:inputType="textPersonName"
+                android:minHeight="40dp"
+                android:textColorHint="#455A64" />
 
-        <EditText
-            android:id="@+id/phoneNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:background="@drawable/edit_text"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:autofillHints=""
-            android:drawableStart="@drawable/baseline_call_24"
-            android:ems="16"
-            android:hint="@string/phone"
-            android:inputType="phone"
-            android:minHeight="48dp"
-            android:textColorHint="#455A64" />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text"
+                android:drawableStart="@drawable/attach_email_24"
+                android:ems="16"
+                android:hint="@string/your_email"
+                android:inputType="textEmailAddress"
+                android:minHeight="40dp"
+                android:textColorHint="#546E7A" />
 
-        <EditText
-            android:id="@+id/department"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:autofillHints=""
-            android:background="@drawable/edit_text"
-            android:drawableStart="@drawable/department"
-            android:ems="16"
-            android:hint="@string/department"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:textColorHint="#455A64" />
-        <EditText
-            android:id="@+id/year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:autofillHints=""
-            android:drawableStart="@drawable/department"
-            android:background="@drawable/edit_text"
-            android:ems="16"
-            android:hint="@string/year"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:textColorHint="#455A64" />
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnRegister"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_bag"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_10sdp"
+            <EditText
+                android:id="@+id/password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text"
+                android:drawableStart="@drawable/password_svgrepo_com"
+                android:ems="16"
+                android:hint="@string/prompt_password"
+                android:inputType="textPassword"
+                android:minHeight="40dp"
+                android:textColorHint="#546E7A" />
 
-            android:ems="10"
-            android:text="@string/register" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/have_an_account_sign_in"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_30ssp"
-            android:id="@+id/gotoSign_in"
-            />
+            <EditText
+                android:id="@+id/ConPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text"
+                android:drawableStart="@drawable/password_svgrepo_com"
+                android:ems="16"
+                android:hint="@string/confirm_password"
+                android:inputType="textPassword"
+                android:minHeight="40dp"
+                android:textColorHint="#455A64" />
+
+            <EditText
+                android:id="@+id/phoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text"
+                android:drawableStart="@drawable/baseline_call_24"
+                android:ems="16"
+                android:hint="@string/phone"
+                android:inputType="phone"
+                android:minHeight="40dp"
+                android:textColorHint="#455A64" />
+
+            <EditText
+                android:id="@+id/department"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text"
+                android:drawableStart="@drawable/department"
+                android:ems="16"
+                android:hint="@string/department"
+                android:inputType="text"
+                android:minHeight="40dp"
+                android:textColorHint="#455A64" />
+
+            <EditText
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:autofillHints=""
+                android:background="@drawable/edit_text"
+                android:drawableStart="@drawable/department"
+                android:ems="16"
+                android:hint="@string/year"
+                android:inputType="text"
+                android:minHeight="40dp"
+                android:textColorHint="#455A64" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/button_bag"
+
+                android:ems="10"
+                android:text="@string/register" />
+
+            <TextView
+                android:id="@+id/gotoSign_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_30ssp"
+                android:text="@string/have_an_account_sign_in" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
-</ScrollView>
-
-
+    </ScrollView>
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:layout_width="wrap_content"
