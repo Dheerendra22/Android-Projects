@@ -19,24 +19,26 @@
         android:contentDescription="@string/vims_image" />
 
     <TextView
+        android:id="@+id/txt1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/welcome_to_vims"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_5ssp"
-        android:textStyle="bold"
+        android:fontFamily="@font/aldrich"
+        android:text="@string/welcome_to_vims"
         android:textSize="@dimen/_12ssp"
-        android:id="@+id/txt1" />
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/txt2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_in_to_continue"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_15ssp"
+        android:fontFamily="@font/abeezee_italic"
+        android:text="@string/sign_in_to_continue"
         android:textSize="@dimen/_10ssp"
-        android:textStyle="italic"
-        android:id="@+id/txt2" />
+        android:textStyle="italic" />
 
     <EditText
         android:id="@+id/email"
@@ -49,6 +51,7 @@
         android:ems="16"
         android:hint="@string/your_email"
         android:inputType="textEmailAddress"
+        android:background="@drawable/edit_text"
         android:minHeight="48dp"
         android:textColorHint="#455A64" />
 
@@ -63,6 +66,7 @@
         android:ems="16"
         android:hint="@string/prompt_password"
         android:inputType="textPassword"
+        android:background="@drawable/edit_text"
         android:minHeight="48dp"
         android:textColorHint="#455A64" />
 
@@ -73,28 +77,32 @@
         android:layout_gravity="right"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_20sdp"
+        android:fontFamily="@font/abeezee_italic"
         android:text="@string/forgot_password"
         android:textStyle="normal"
         tools:ignore="RtlHardcoded" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/loginbtn"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_20sdp"
+        android:background="@drawable/button_bag"
         android:ems="10"
+        android:fontFamily="@font/abeezee_italic"
+
         android:text="@string/login" />
 
     <TextView
+        android:id="@+id/Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/account_register"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_20ssp"
-        android:textStyle="bold"
-        android:id="@+id/Register" />
+        android:fontFamily="@font/abeezee_italic"
+        android:text="@string/account_register"
+        android:textStyle="bold" />
 
 
     <com.google.android.material.progressindicator.CircularProgressIndicator
