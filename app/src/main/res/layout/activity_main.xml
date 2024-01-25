@@ -87,7 +87,7 @@
             <androidx.appcompat.widget.AppCompatImageButton
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_120sdp"
                 android:background="@drawable/edit"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
