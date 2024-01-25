@@ -111,6 +111,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:id="@+id/progressbar"
+        android:indeterminate="true"
         android:visibility="invisible"
         />
 
