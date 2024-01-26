@@ -38,4 +38,13 @@
         android:layout_marginTop="@dimen/_5sdp"
         android:layout_marginStart="@dimen/_20sdp"/>
 
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Select Course"
+        android:background="@drawable/edit_text"
+        android:completionThreshold="1"
+        android:layout_marginBottom="16dp"/>
+
 </LinearLayout>

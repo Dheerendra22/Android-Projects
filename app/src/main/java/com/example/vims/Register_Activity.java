@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -26,14 +28,18 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Register_Activity extends AppCompatActivity {
-    EditText fullName,email,password,con_password,phone , department ,year;
+    EditText fullName,email,password,con_password,phone ,year;
     Button register ;
     TextView goToSign ;
     ProgressBar pg ;
    FirebaseAuth fAuth ;
    FirebaseFirestore fireStore ;
 
-   String userId ;
+   String userId  ;
+    String[] courses = {"BCA", "BCOM", "BSC"};
+    String[] years = {"1st Year", "2nd Year", "3rd Year"};
+    AutoCompleteTextView autoCompleteTextViewDepart ;
+    AutoCompleteTextView autoCompleteTextViewYear ;
 
 
     @SuppressLint("MissingInflatedId")
@@ -51,6 +57,8 @@ public class Register_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
+
+
        //  find Ids
 
         fullName = findViewById(R.id.fullName);
@@ -58,11 +66,18 @@ public class Register_Activity extends AppCompatActivity {
         password = findViewById(R.id.password);
         con_password = findViewById(R.id.ConPassword);
         phone = findViewById(R.id.phoneNumber);
-        department = findViewById(R.id.department);
         register = findViewById(R.id.btnRegister);
         goToSign =findViewById(R.id.gotoSign_in);
-        year = findViewById(R.id.year);
         pg = findViewById(R.id.progressbar);
+        autoCompleteTextViewDepart = findViewById(R.id.department);
+        autoCompleteTextViewYear = findViewById(R.id.year);
+
+
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,courses);
+        autoCompleteTextViewDepart.setAdapter(adapter1);
+
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,years);
+        autoCompleteTextViewYear.setAdapter(adapter2);
 
 
         //  Get instance
@@ -86,8 +101,10 @@ public class Register_Activity extends AppCompatActivity {
              String mPassword = password.getText().toString().trim();
              String conPassword = con_password.getText().toString().trim();
              String mPhone = phone.getText().toString().trim();
-             String mDepartment = department.getText().toString().trim();
-             String mYear =  year.getText().toString().trim();
+             String mYear =  autoCompleteTextViewYear.getText().toString();
+             String mDepartment = autoCompleteTextViewDepart.getText().toString();
+
+
 
 
     if(TextUtils.isEmpty(mName)){
@@ -109,13 +126,12 @@ public class Register_Activity extends AppCompatActivity {
         phone.setError("Enter correct phone number!");
         return;
     }else if(TextUtils.isEmpty(mDepartment)){
-        department.setError("Please enter your department!");
+        autoCompleteTextViewDepart.setError("Please enter your department!");
         return;
     }else if(TextUtils.isEmpty(mYear)){
-        year.setError("Please enter your year!");
+        autoCompleteTextViewYear.setError("Please enter your year!");
         return;
     }
-
 
 
     pg.setVisibility(View.VISIBLE);
@@ -124,14 +140,13 @@ public class Register_Activity extends AppCompatActivity {
 
     fAuth.createUserWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(task -> {
         if(task.isSuccessful()){
-//            Toast.makeText(Register_Activity.this, "User Created Successfully.", Toast.LENGTH_SHORT).show();
             userId = fAuth.getCurrentUser().getUid();
             DocumentReference df = fireStore.collection("Users").document(userId);
             Map<String,Object> user = new HashMap<>();
             user.put("FullName",mName);
             user.put("Email",mEmail);
             user.put("Phone",mPhone);
-            user.put("Department",mDepartment);
+            user.put("Department", mDepartment);
             user.put("Year",mYear);
             df.set(user).addOnCompleteListener(task1 -> {
                 Log.d("Tag","User profile Created");

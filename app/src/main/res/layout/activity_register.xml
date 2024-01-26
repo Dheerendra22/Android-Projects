@@ -131,37 +131,35 @@
                 android:textColorHint="#455A64"
                 tools:ignore="TextContrastCheck" />
 
-            <EditText
+
+            <AutoCompleteTextView
                 android:id="@+id/department"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:autofillHints=""
                 android:background="@drawable/edit_text"
+                android:completionThreshold="1"
                 android:drawableStart="@drawable/department"
                 android:ems="16"
                 android:hint="@string/department"
-                android:inputType="text"
                 android:minHeight="48dp"
-                android:textColorHint="#616161"
-                tools:ignore="TextContrastCheck" />
+                android:textColorHint="#616161" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:autofillHints=""
                 android:background="@drawable/edit_text"
+                android:completionThreshold="1"
                 android:drawableStart="@drawable/department"
                 android:ems="16"
                 android:hint="@string/year"
-                android:inputType="text"
                 android:minHeight="48dp"
-                android:textColorHint="#455A64"
-                tools:ignore="TextContrastCheck" />
+                android:textColorHint="#616161"
+               />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnRegister"
@@ -170,7 +168,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/button_bag"
-
                 android:ems="10"
                 android:text="@string/register" />
 
