@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Objects;
 
 public class Register_Activity extends AppCompatActivity {
-    EditText fullName,email,password,con_password,phone ,year;
+    EditText fullName,email,password,con_password,phone ;
     Button register ;
     TextView goToSign ;
     ProgressBar pg ;
@@ -38,8 +38,8 @@ public class Register_Activity extends AppCompatActivity {
    String userId  ;
     String[] courses = {"BCA", "BCOM", "BSC"};
     String[] years = {"1st Year", "2nd Year", "3rd Year"};
-    AutoCompleteTextView autoCompleteTextViewDepart ;
-    AutoCompleteTextView autoCompleteTextViewYear ;
+    Spinner spinnerDepart ;
+    Spinner spinnerYear ;
 
 
     @SuppressLint("MissingInflatedId")
@@ -69,15 +69,17 @@ public class Register_Activity extends AppCompatActivity {
         register = findViewById(R.id.btnRegister);
         goToSign =findViewById(R.id.gotoSign_in);
         pg = findViewById(R.id.progressbar);
-        autoCompleteTextViewDepart = findViewById(R.id.department);
-        autoCompleteTextViewYear = findViewById(R.id.year);
+        spinnerDepart = findViewById(R.id.department);
+        spinnerYear = findViewById(R.id.year);
 
 
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,courses);
-        autoCompleteTextViewDepart.setAdapter(adapter1);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,courses);
+        spinnerDepart.setAdapter(adapter1);
+        spinnerDepart.setSelection(0);
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line,years);
-        autoCompleteTextViewYear.setAdapter(adapter2);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item,years);
+        spinnerYear.setAdapter(adapter2);
+        spinnerYear.setSelection(0);
 
 
         //  Get instance
@@ -101,8 +103,8 @@ public class Register_Activity extends AppCompatActivity {
              String mPassword = password.getText().toString().trim();
              String conPassword = con_password.getText().toString().trim();
              String mPhone = phone.getText().toString().trim();
-             String mYear =  autoCompleteTextViewYear.getText().toString();
-             String mDepartment = autoCompleteTextViewDepart.getText().toString();
+             String mYear =  spinnerYear.getSelectedItem().toString();
+             String mDepartment = spinnerDepart.getSelectedItem().toString();
 
 
 
@@ -124,12 +126,6 @@ public class Register_Activity extends AppCompatActivity {
         return;
     }else if (mPhone.length() != 10) {
         phone.setError("Enter correct phone number!");
-        return;
-    }else if(TextUtils.isEmpty(mDepartment)){
-        autoCompleteTextViewDepart.setError("Please enter your department!");
-        return;
-    }else if(TextUtils.isEmpty(mYear)){
-        autoCompleteTextViewYear.setError("Please enter your year!");
         return;
     }
 
