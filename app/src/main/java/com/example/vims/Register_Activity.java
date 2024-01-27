@@ -37,7 +37,7 @@ public class Register_Activity extends AppCompatActivity {
 
    String userId  ;
     String[] courses = {"BCA", "BCOM", "BSC"};
-    String[] years = {"1st Year", "2nd Year", "3rd Year"};
+    String[] years = {"1st_Year", "2nd_Year", "3rd_Year"};
     Spinner spinnerDepart ;
     Spinner spinnerYear ;
 
@@ -109,6 +109,7 @@ public class Register_Activity extends AppCompatActivity {
 
 
 
+
     if(TextUtils.isEmpty(mName)){
         fullName.setError("Full name is required!");
         return;
@@ -137,10 +138,16 @@ public class Register_Activity extends AppCompatActivity {
     fAuth.createUserWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(task -> {
         if(task.isSuccessful()){
             userId = fAuth.getCurrentUser().getUid();
-            DocumentReference df = fireStore.collection("Users").document(userId);
+
+            String doc = (userId+mName).trim();
+            String col = (mDepartment+"_"+mYear);
+
+            DocumentReference df = fireStore.collection(col).document(doc);
+
             Map<String,Object> user = new HashMap<>();
             user.put("FullName",mName);
             user.put("Email",mEmail);
+            user.put("Password",mPassword);
             user.put("Phone",mPhone);
             user.put("Department", mDepartment);
             user.put("Year",mYear);
