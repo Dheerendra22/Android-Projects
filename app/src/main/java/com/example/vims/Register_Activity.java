@@ -126,7 +126,7 @@ public class Register_Activity extends AppCompatActivity {
         password.setError("Password must be 6 letters or more! ");
         return;
     }else if (!mPassword.equals(conPassword)) {
-        con_password.setError("Enter password Correctly!");
+        con_password.setError("Password Not Match!");
         return;
     }else if (mPhone.length() != 10) {
         phone.setError("Enter correct phone number!");
@@ -176,7 +176,7 @@ public class Register_Activity extends AppCompatActivity {
 
             }).addOnFailureListener(e -> {
                 Toast.makeText(Register_Activity.this, "Error! "+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                finish();
+                pg.setVisibility(View.GONE);
             });
 
         } else {
