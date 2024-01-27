@@ -7,18 +7,16 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 Button btnLogout ;
 ImageView profile ;
-TextView name, department, year ;
+TextView name, department, year ,email , phone;
 
 SharedPreferences preferences ;
 
@@ -36,16 +34,15 @@ FirebaseAuth firebaseAuth ;
 
         setContentView(R.layout.activity_main);
 
-        CardView cardViewProfile = findViewById(R.id.profileCard);
-        LinearLayout outerLinearLayout = cardViewProfile.findViewById(R.id.l1);
-        LinearLayout innerLinearLayout = outerLinearLayout.findViewById(R.id.l2);
 
 
         btnLogout = findViewById(R.id.logout);
         profile = findViewById(R.id.profileImg);
-        name =  innerLinearLayout.findViewById(R.id.fullName);
-        department = innerLinearLayout.findViewById(R.id.department);
-        year =  innerLinearLayout.findViewById(R.id.year);
+        name =  findViewById(R.id.fullName);
+        department = findViewById(R.id.department);
+        year =  findViewById(R.id.year);
+        email = findViewById(R.id.email);
+        phone = findViewById(R.id.phoneNumber);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -61,6 +58,8 @@ FirebaseAuth firebaseAuth ;
         name.setText(preferences.getString("FullName", " "));
         department.setText(preferences.getString("Department", " "));
         year.setText(preferences.getString("Year", " "));
+        email.setText(preferences.getString("Email", " "));
+        phone.setText(preferences.getString("Phone", " "));
 
 
 

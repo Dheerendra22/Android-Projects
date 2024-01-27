@@ -168,6 +168,7 @@ public class Register_Activity extends AppCompatActivity {
                 editor.putString("Phone", mPhone);
                 editor.putString("Department", mDepartment);
                 editor.putString("Year", mYear);
+                editor.putString("Email",mEmail);
                 editor.apply();
 
                 Toast.makeText(Register_Activity.this, "User Profile Created Successfully.", Toast.LENGTH_SHORT).show();
