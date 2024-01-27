@@ -3,9 +3,9 @@ package com.example.vims;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -40,6 +40,8 @@ public class Register_Activity extends AppCompatActivity {
     String[] years = {"1st_Year", "2nd_Year", "3rd_Year"};
     Spinner spinnerDepart ;
     Spinner spinnerYear ;
+
+    SharedPreferences preferences ;
 
 
     @SuppressLint("MissingInflatedId")
@@ -86,6 +88,7 @@ public class Register_Activity extends AppCompatActivity {
 
         fAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
+        preferences = getSharedPreferences("Profile", MODE_PRIVATE);
 
         //Check If already Login or not ?
 
@@ -137,12 +140,15 @@ public class Register_Activity extends AppCompatActivity {
 
     fAuth.createUserWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(task -> {
         if(task.isSuccessful()){
+
             userId = fAuth.getCurrentUser().getUid();
 
             String doc = (userId+mName).trim();
             String col = (mDepartment+"_"+mYear);
 
             DocumentReference df = fireStore.collection(col).document(doc);
+
+            //Map the users Data
 
             Map<String,Object> user = new HashMap<>();
             user.put("FullName",mName);
@@ -151,16 +157,27 @@ public class Register_Activity extends AppCompatActivity {
             user.put("Phone",mPhone);
             user.put("Department", mDepartment);
             user.put("Year",mYear);
+
+            //Set the users data
             df.set(user).addOnCompleteListener(task1 -> {
-                Log.d("Tag","User profile Created");
+
+                //Create shared preference data storage
+
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("FullName", mName);
+                editor.putString("Phone", mPhone);
+                editor.putString("Department", mDepartment);
+                editor.putString("Year", mYear);
+                editor.apply();
+
                 Toast.makeText(Register_Activity.this, "User Profile Created Successfully.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
             }).addOnFailureListener(e -> {
                 Toast.makeText(Register_Activity.this, "Error! "+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                 finish();
             });
 
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
         } else {
             Toast.makeText(Register_Activity.this, "Something Error!"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
             pg.setVisibility(View.GONE);

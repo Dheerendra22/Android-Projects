@@ -1,6 +1,7 @@
 package com.example.vims;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -8,25 +9,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 Button btnLogout ;
 ImageView profile ;
 TextView name, department, year ;
 
+SharedPreferences preferences ;
+
 FirebaseAuth firebaseAuth ;
-FirebaseFirestore fireStore ;
-String userId ;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +48,6 @@ String userId ;
         year =  innerLinearLayout.findViewById(R.id.year);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        fireStore = FirebaseFirestore.getInstance();
-        userId = Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid();
 
 
         btnLogout.setOnClickListener(v -> {
@@ -60,18 +57,12 @@ String userId ;
         });
 
 
-        DocumentReference docRef = fireStore.collection("Users").document(userId);
+        preferences = getSharedPreferences("Profile",MODE_PRIVATE);
+        name.setText(preferences.getString("FullName", " "));
+        department.setText(preferences.getString("Department", " "));
+        year.setText(preferences.getString("Year", " "));
 
-        docRef.get().addOnSuccessListener(documentSnapshot -> {
-            if(documentSnapshot.exists()){
-                name.setText(documentSnapshot.getString("FullName"));
-                department.setText(documentSnapshot.getString("Department"));
-                year.setText(documentSnapshot.getString("Year"));
-            }else {
-                Toast.makeText(MainActivity.this, "Failed to fetch !", Toast.LENGTH_SHORT).show();
-            }
 
-        }).addOnFailureListener(e -> Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show());
 
 
     }
