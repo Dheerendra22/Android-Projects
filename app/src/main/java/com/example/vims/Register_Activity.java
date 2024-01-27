@@ -172,6 +172,7 @@ public class Register_Activity extends AppCompatActivity {
 
                 Toast.makeText(Register_Activity.this, "User Profile Created Successfully.", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
 
             }).addOnFailureListener(e -> {
                 Toast.makeText(Register_Activity.this, "Error! "+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
