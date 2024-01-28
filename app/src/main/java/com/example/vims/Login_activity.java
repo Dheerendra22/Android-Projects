@@ -21,12 +21,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Objects;
 
 public class Login_activity extends AppCompatActivity {
-EditText email , password ;
-TextView goToRegister ,forgot;
-Button login ;
-ProgressBar pgBar ;
+    EditText email, password;
+    TextView goToRegister, forgot;
+    Button login;
+    ProgressBar pgBar;
 
-FirebaseAuth fAuth ;
+    FirebaseAuth fAuth;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -34,7 +34,6 @@ FirebaseAuth fAuth ;
         super.onCreate(savedInstanceState);
 
         // For Full screen
-
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -42,84 +41,81 @@ FirebaseAuth fAuth ;
         setContentView(R.layout.activity_login);
 
         // Find Ids of Components
+        login = findViewById(R.id.btnLogin);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+        goToRegister = findViewById(R.id.Register);
+        pgBar = findViewById(R.id.progressbar);
+        forgot = findViewById(R.id.forgotPassword);
+        fAuth = FirebaseAuth.getInstance();
 
-       login = findViewById(R.id.btnLogin);
-       email = findViewById(R.id.email);
-       password = findViewById(R.id.password);
-       goToRegister = findViewById(R.id.Register);
-       pgBar = findViewById(R.id.progressbar);
-       forgot = findViewById(R.id.forgotPassword);
-       fAuth = FirebaseAuth.getInstance();
+        // On Click listener in sign-in Button
+        login.setOnClickListener(v -> {
+            String mEmail = email.getText().toString().trim();
+            String mPassword = password.getText().toString().trim();
 
-       // On Click listener in sign in Button
+            if (TextUtils.isEmpty(mEmail)) {
+                email.setError("Email is required!");
+                return;
+            }
+            if (TextUtils.isEmpty(mPassword)) {
+                password.setError("Please enter Password");
+                return;
+            }
+            if (mPassword.length() < 6) {
+                password.setError("Password must be 6 letters or more! ");
+                return;
+            }
 
-       login.setOnClickListener(v -> {
+            pgBar.setVisibility(View.VISIBLE);
 
-           String mEmail = email.getText().toString().trim();
-           String mPassword = password.getText().toString().trim();
+            // Authenticate the user!
+            fAuth.signInWithEmailAndPassword(mEmail, mPassword).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(Login_activity.this, "Logged in Successfully. ", Toast.LENGTH_SHORT).show();
+                    pgBar.setVisibility(View.GONE);
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    finish();
+                } else {
+                    Toast.makeText(Login_activity.this, "Something Error!" + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    pgBar.setVisibility(View.GONE);
+                }
+            });
+        });
 
-           if (TextUtils.isEmpty(mEmail)) {
-               email.setError("Email is required!");
-               return;
-           }
-           if (TextUtils.isEmpty(mPassword)) {
-               password.setError("Please enter Password");
-               return;
-           }
-           if (mPassword.length() < 6) {
-               password.setError("Password must be 6 letters or more! ");
-               return;
-           }
+        // Set click listener on Register TextView.
+        goToRegister.setOnClickListener(v -> {
+            startActivity(new Intent(getApplicationContext(), Register_Activity.class));
+            finish();
+        });
 
-          pgBar.setVisibility(View.VISIBLE);
+        forgot.setOnClickListener(v -> {
+            EditText resetMail = new EditText(v.getContext());
+            AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+            passwordResetDialog.setTitle("Reset Password");
+            passwordResetDialog.setMessage("Enter your Email to receive reset password link.");
+            passwordResetDialog.setView(resetMail);
 
-           // Authenticate the user !
+            passwordResetDialog.setPositiveButton("Send", (dialog, which) -> {
+                String email = resetMail.getText().toString();
+                fAuth.sendPasswordResetEmail(email)
+                        .addOnCompleteListener(task -> Toast.makeText(Login_activity.this, "Link sent to your email!", Toast.LENGTH_SHORT).show())
+                        .addOnFailureListener(e -> Toast.makeText(Login_activity.this, "Reset link Not sent ! " + e.getMessage(), Toast.LENGTH_SHORT).show());
+            });
 
-           fAuth.signInWithEmailAndPassword(mEmail,mPassword).addOnCompleteListener(task -> {
-               if(task.isSuccessful()){
-                   Toast.makeText(Login_activity.this, "Logged in Successfully. ", Toast.LENGTH_SHORT).show();
-                   pgBar.setVisibility(View.GONE);
-                   startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                   finish();
-               }else {
-                   Toast.makeText(Login_activity.this, "Something Error!"+ Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                   pgBar.setVisibility(View.GONE);
-               }
-           });
-       });
+            passwordResetDialog.setNegativeButton("Cancel", (dialog, which) -> {
+                // Do nothing on cancel
+            });
 
-       // set click listener on Register TextView.
-
-       goToRegister.setOnClickListener(v -> {
-           startActivity(new Intent(getApplicationContext(), Register_Activity.class));
-           finish();
-       });
-
-       forgot.setOnClickListener(v -> {
-           EditText resetMail = new EditText(v.getContext());
-           AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
-           passwordResetDialog.setTitle("Reset Password");
-           passwordResetDialog.setMessage("Enter your Email to receive reset password link.");
-           passwordResetDialog.setView(resetMail);
-
-           passwordResetDialog.setPositiveButton("Send", (dialog, which) -> {
-               String email = resetMail.getText().toString();
-               fAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> Toast.makeText(Login_activity.this, "Link sent to your email!", Toast.LENGTH_SHORT).show()).addOnFailureListener(e -> Toast.makeText(Login_activity.this, "Reset link Not sent ! "+e.getMessage(), Toast.LENGTH_SHORT).show());
-
-           });
-           passwordResetDialog.setNegativeButton("Cancel", (dialog, which) -> {
-
-           });
-           passwordResetDialog.create().show();
-       });
-
+            passwordResetDialog.create().show();
+        });
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        if(fAuth.getCurrentUser()!=null){
+        if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }

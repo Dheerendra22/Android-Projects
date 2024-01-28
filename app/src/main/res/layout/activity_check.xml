@@ -8,43 +8,6 @@
     android:orientation="vertical"
     tools:context=".check">
 
-    <TextView
-        android:id="@+id/fullName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_20sdp"/>
 
-    <TextView
-        android:id="@+id/department"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Department"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginStart="@dimen/_20sdp"/>
-
-    <TextView
-        android:id="@+id/year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Year"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginStart="@dimen/_20sdp"/>
-
-    <AutoCompleteTextView
-        android:id="@+id/autoCompleteTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Select Course"
-        android:background="@drawable/edit_text"
-        android:completionThreshold="1"
-        android:layout_marginBottom="16dp"/>
 
 </LinearLayout>
