@@ -54,8 +54,6 @@ dependencies {
     implementation ("com.intuit.sdp:sdp-android:1.1.0")
     implementation ("com.intuit.ssp:ssp-android:1.1.0")
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
-    implementation("com.google.firebase:firebase-appcheck-playintegrity")
-
     implementation ("com.googlecode.libphonenumber:libphonenumber:8.12.34")
 
 

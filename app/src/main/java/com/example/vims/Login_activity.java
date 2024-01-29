@@ -97,8 +97,8 @@ public class Login_activity extends AppCompatActivity {
             passwordResetDialog.setView(resetMail);
 
             passwordResetDialog.setPositiveButton("Send", (dialog, which) -> {
-                String email = resetMail.getText().toString();
-                fAuth.sendPasswordResetEmail(email)
+                String resetEmail = resetMail.getText().toString();
+                fAuth.sendPasswordResetEmail(resetEmail)
                         .addOnCompleteListener(task -> Toast.makeText(Login_activity.this, "Link sent to your email!", Toast.LENGTH_SHORT).show())
                         .addOnFailureListener(e -> Toast.makeText(Login_activity.this, "Reset link Not sent ! " + e.getMessage(), Toast.LENGTH_SHORT).show());
             });
@@ -114,7 +114,6 @@ public class Login_activity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
         if (fAuth.getCurrentUser() != null) {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();

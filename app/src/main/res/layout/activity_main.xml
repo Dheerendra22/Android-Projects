@@ -105,16 +105,7 @@
                     tools:ignore="HardcodedText"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:layout_marginStart="@dimen/_15sdp"/>
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/artifika"
-                    tools:ignore="HardcodedText"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_marginStart="@dimen/_15sdp"/>
+
 
                 <TextView
                     android:id="@+id/rollNumber"

@@ -138,7 +138,7 @@ public class Register_Activity extends AppCompatActivity {
                 rollNumber.requestFocus();
                 return;
             }
-            if(mEnrollment.length() != 10){
+            if(mEnrollment.length() != 12){
                 rollNumber.setError("Enter Correct EnrollmentNumber!");
                 rollNumber.requestFocus();
                 return;
@@ -160,7 +160,6 @@ public class Register_Activity extends AppCompatActivity {
                     user1.put("Department", mDepartment);
                     user1.put("Year", mYear);
                     dataRef.set(user1);
-
 
                     DocumentReference df = fireStore.collection(col).document(doc);
 
