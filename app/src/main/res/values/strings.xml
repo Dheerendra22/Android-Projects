@@ -27,5 +27,7 @@
     <string name="year">Year</string>
     <string name="vims">VIMS</string>
     <string name="dashboard">DASHBOARD</string>
+    <string name="roll_number">Roll Number</string>
+    <string name="enrollment_number">Enrollment Number</string>
 
 </resources>
