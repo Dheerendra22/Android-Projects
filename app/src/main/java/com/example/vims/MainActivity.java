@@ -127,10 +127,13 @@ public class MainActivity extends AppCompatActivity {
                 + Objects.requireNonNull(firebaseAuth.getCurrentUser()).getUid() + "/profile");
 
         fileRef.putFile(imageUri).addOnSuccessListener(taskSnapshot -> {
-            fileRef.getDownloadUrl().addOnSuccessListener(uri -> Picasso.get().load(uri).into(profile));
+            fileRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                profile.setBackgroundColor(Color.TRANSPARENT);
+                Picasso.get().load(uri).into(profile);
+            });
             Toast.makeText(MainActivity.this, "Image Uploaded Successfully.", Toast.LENGTH_SHORT).show();
-        }).addOnFailureListener(e ->
-                Toast.makeText(MainActivity.this, "Image Not Uploaded! " + e.getMessage(), Toast.LENGTH_SHORT).show());
+        }).addOnFailureListener(e -> Toast.makeText(MainActivity.this, "Image Not Uploaded! " + e.getMessage(), Toast.LENGTH_SHORT).show());
+
     }
 
     private void logout() {
