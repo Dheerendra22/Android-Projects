@@ -1,6 +1,7 @@
 package com.example.vims;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -19,6 +20,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseFirestore fireStore;
     private String mName, mDepartment, mYear, mEmail, mPhone, mRollNumber, mEnrollment;
 
+    private static final int EMAIL_VERIFICATION_REQUEST_CODE = 123;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+
 
         fAuth = FirebaseAuth.getInstance();
         fireStore = FirebaseFirestore.getInstance();
@@ -207,4 +213,90 @@ public class MainActivity extends AppCompatActivity {
         // Handle the error
         Toast.makeText(MainActivity.this, message, Toast.LENGTH_SHORT).show();
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseUser currentUser = fAuth.getCurrentUser();
+
+        if (currentUser != null) {
+            currentUser.reload().addOnCompleteListener(task -> {
+                FirebaseUser updatedUser = fAuth.getCurrentUser();
+
+                if (updatedUser != null && !updatedUser.isEmailVerified()) {
+                    // User is signed in but email is not verified
+                    showEmailVerificationDialog();
+                }
+            });
+        }
+    }
+
+
+
+    private void showEmailVerificationDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Please verify your email to continue.")
+                .setTitle("Email Verification Required")
+                .setCancelable(false)
+                .setPositiveButton("Resend Verification Email", (dialog, which) -> sendEmailVerification())
+                .setNegativeButton("Logout", (dialog, which) -> {
+                    // Close the app or take appropriate action
+                    logout();
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void sendEmailVerification() {
+        FirebaseUser user = fAuth.getCurrentUser();
+
+        if (user != null) {
+            user.sendEmailVerification()
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this,
+                                    "Verification email sent to " + user.getEmail(),
+                                    Toast.LENGTH_SHORT).show();
+                            // Open the email app
+                            openEmailApp();
+
+                        } else {
+                            Toast.makeText(MainActivity.this,
+                                    "Failed to send verification email.",
+                                    Toast.LENGTH_SHORT).show();
+                            showEmailVerificationDialog();
+
+                        }
+                    });
+        }
+
+    }
+
+    private void openEmailApp() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_APP_EMAIL);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == EMAIL_VERIFICATION_REQUEST_CODE) {
+            // Check if the email is now verified
+            FirebaseUser currentUser = fAuth.getCurrentUser();
+            if (!(currentUser != null && currentUser.isEmailVerified())) {
+                // Email is not verified, show the email verification dialog
+                showEmailVerificationDialog();
+            }
+        }
+    }
+
+
 }
