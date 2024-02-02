@@ -2,6 +2,7 @@ package com.example.vims;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -28,6 +29,8 @@ public class Login_activity extends AppCompatActivity {
 
     FirebaseAuth fAuth;
 
+    SharedPreferences sharedPreferences ;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class Login_activity extends AppCompatActivity {
         pgBar = findViewById(R.id.progressbar);
         forgot = findViewById(R.id.forgotPassword);
         fAuth = FirebaseAuth.getInstance();
+        sharedPreferences = getSharedPreferences("Profile", MODE_PRIVATE);
 
         // On Click listener in sign-in Button
         login.setOnClickListener(v -> {
@@ -90,19 +94,28 @@ public class Login_activity extends AppCompatActivity {
         });
 
         forgot.setOnClickListener(v -> {
+
             EditText resetMail = new EditText(v.getContext());
+            resetMail.setBackgroundResource(R.drawable.edit_text);
             AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
             passwordResetDialog.setTitle("Reset Password");
-            passwordResetDialog.setMessage("Enter your Email to receive reset password link.");
+            passwordResetDialog.setMessage("Please enter your registered email address to receive a link for resetting your password.");
             passwordResetDialog.setView(resetMail);
 
             passwordResetDialog.setPositiveButton("Send", (dialog, which) -> {
                 String resetEmail = resetMail.getText().toString();
-                fAuth.sendPasswordResetEmail(resetEmail)
-                        .addOnCompleteListener(task -> Toast.makeText(Login_activity.this, "Link sent to your email!", Toast.LENGTH_SHORT).show())
-                        .addOnFailureListener(e -> Toast.makeText(Login_activity.this, "Reset link Not sent ! " + e.getMessage(), Toast.LENGTH_SHORT).show());
-            });
+                String email = sharedPreferences.getString("Email","");
+                if(resetEmail.equals(email)){
+                    fAuth.sendPasswordResetEmail(resetEmail)
+                            .addOnCompleteListener(task -> Toast.makeText(Login_activity.this, "Link sent to your email, Please check your nail.", Toast.LENGTH_SHORT).show())
+                            .addOnFailureListener(e -> Toast.makeText(Login_activity.this, "Reset link Not sent ! " + e.getMessage(), Toast.LENGTH_SHORT).show());
 
+                }else {
+                    resetMail.setError("Please Enter Registered Email!");
+                    Toast.makeText(this, "Please Enter Registered Email!", Toast.LENGTH_LONG).show();
+                }
+
+            });
             passwordResetDialog.setNegativeButton("Cancel", (dialog, which) -> {
                 // Do nothing on cancel
             });

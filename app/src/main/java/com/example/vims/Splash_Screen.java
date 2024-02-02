@@ -28,6 +28,6 @@ public class Splash_Screen extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             startActivity(new Intent(getApplicationContext(), Login_activity.class));
             finish();
-        },2000);
+        },1500);
     }
 }
